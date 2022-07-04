@@ -11,7 +11,7 @@ TODO: schreiben sie wie die Skripte aufgerufen werden sollen (d.h. welche Parame
 
 Skript 1: <br>
 
-Skript 2: git_extract_commits </path vom Baseverzeichnis> <Name vom Output File>
+Skript 2: git_extract_commits </path vom Baseverzeichnis> &lt;Name vom Output File>
 
 ### Ablauf der Automation
 
