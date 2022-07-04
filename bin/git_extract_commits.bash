@@ -29,6 +29,12 @@ echo "Output Filename: $output_filename";
 find $baserepo -name '*.git' > $TMPDIR/found_repos.txt
 sed -i -r 's|/[^/]+$||' $TMPDIR/found_repos.txt
 
+while read target_repo; do
+    cd $target_repo
+    git log --date=format:'%Y%m%d' --format=format:" %ad %H %an" > ~/Desktop/test.txt
+    sed -i s@^@$target_repo@ ~/Desktop/test.txt
+done < $TMPDIR/found_repos.txt
+
 #target_repo=$baserepo #change $baserepo later
 
 #git log --date=format:'%Y%m%d' --format=format:"%ad %H %an" > ~/Desktop/test.txt
