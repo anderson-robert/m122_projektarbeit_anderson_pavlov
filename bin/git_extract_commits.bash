@@ -7,7 +7,7 @@ BASENAME=`basename $0`      # Set the script name (without path to it)
 TMPDIR=/tmp/$BASENAME.$$    # Set a temporary directory if needed
 ETCDIR=$BINDIR/../etc       # ETCDIR is the config directory
 
-. ETCDIR/lb3.conf           # Source config file
+. $ETCDIR/lb3.conf           # Source config file
 
 # create and populate temp dir
 cd
@@ -36,27 +36,46 @@ cd $cwd
 find $baserepo -name '*.git' > $TMPDIR/found_repos.txt
 sed -i -r 's|/[^/]+$||' $TMPDIR/found_repos.txt
 
-#LINES=$(cat $TMPDIR/found_repos.txt) # Set LINES to each line of found_repos.txt using command substitution
+LINES=$(cat $TMPDIR/found_repos.txt) # Set LINES to each line of found_repos.txt using command substitution
 
-cat $TMPDIR/found_repos.txt|grep -v '^#'|grep -v '^$'|while read target_repo;
+while read -r target_repo;
 do
     cd
     cd $target_repo
-    git log --date=format:'%Y%m%d' --format=format:" %ad %H %an" >> $GEC_FILE_OUTPUT_PATH/$output_filename
+    git log --date=format:'%Y%m%d' --format=format:", %ad, %H, %an" >> $GEC_FILE_OUTPUT_PATH/$output_filename
     sed -i s@^@$target_repo@ $GEC_FILE_OUTPUT_PATH/$output_filename
     cd
     cd $cwd
-done
+done < $TMPDIR/found_repos.txt
+
+#readarray -t lines < $TMPDIR/found_repos.txt &&
+#    for line in "${lines[@]}"; do
+#        cd
+#        cd $line #${lines[line]}
+#        git log --date=format:'%Y%m%d' --format=format:", %ad, %H, %an" >> $GEC_FILE_OUTPUT_PATH/$output_filename
+#        sed -i s@^@$line@ $GEC_FILE_OUTPUT_PATH/$output_filename
+#        cd
+#        cd $cwd
+#    done
 
 #for LINE in $LINES
 #do
-#    cd $LINE
-#    git log --date=format:'%Y%m%d' --format=format:" %ad %H %an" > ~/Desktop/test.txt
-#    sed -i s@^@$LINE@ ~/Desktop/test.txt # ToDo: set the file to the output file parameter
-#    cd
+    #cd
+    #cd $LINE
+    #git log --date=format:'%Y%m%d' --format=format:", %ad, %H, %an" >> $GEC_FILE_OUTPUT_PATH/$output_filename
+    #sed -i s@^@$LINE@ $GEC_FILE_OUTPUT_PATH/$output_filename
+    #cd
+    #cd $cwd
 #done #< $TMPDIR/found_repos.txt
 
 #target_repo=$baserepo #change $baserepo later
 
 #git log --date=format:'%Y%m%d' --format=format:"%ad %H %an" > ~/Desktop/test.txt
 #sed -i s@^@$target_repo@ ~/Desktop/test.txt
+
+# Delete temp files
+cd
+cd /tmp
+rm -r $TMPDIR
+cd
+cd $cwd
