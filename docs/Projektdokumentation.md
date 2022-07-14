@@ -31,3 +31,6 @@ Parametern<br>
 ## Abgrenzungen zum Lösungsdesign
 
 TODO: Nachdem das Programm verwirklicht wurde hier die unterschiede von der Implemenatino zum Lösungsdesign beschreiben (was wurde anders gemacht, was wurde nicht gemacht, was wurde zusaetzlich gemacht)
+
+Skript 2:<br>
+Aufruf: git_extract_commits -b </path vom Baseverzeichnis> -o &lt;Name vom Output File>
