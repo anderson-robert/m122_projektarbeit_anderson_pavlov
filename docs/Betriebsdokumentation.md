@@ -4,19 +4,18 @@
 
 TODO: In 2-3 Sätzen beschreiben was die Skripte grundsaetzlich tun.
 
+Der zweite Skript sucht alle Commits aus alle Git Verzeichnisse in einem Base-Verzeichnis die bei der Aufruf des Skripts mitgegeben wird.
+
 ## Installationsanleitung für Administratoren
 
 ### Installation
 
-TODO: Wie ist das skript zu installieren. (z.B. apt-get install ... oder tar xvf .... oder ...)
+Beide Skripts werden installiert in dem dieses Git Repository heruntergeladen wird. Damit die Programm einfach aufgeruft werden kann empfehlen wir, dass man die /bin Verzeichnis vom Programm in ihren PATH Variable setzen.
 
 ### Konfiguration
 
-TODO: Beschreibung der Konfigurationsfiles (Beispiel-Files erstellen im Repo)
-
-TODO: Wie ist ein allfaelliger Cronjob einzurichten
-
-TODO: Wie sind User-Home-Templates einzurichten
+<output-path>: Path wo die Output File abgelegt werden soll<br>
+Einen Beispiel davon sieht man in diesem Repository unter `/m112_projektarbeit_anderson_pavlov/etc`
 
 ....
 
@@ -24,9 +23,14 @@ TODO: Wie sind User-Home-Templates einzurichten
 
 TODO: Erzeugen der Input-Files beschreiben, falls noetig
 
-TODO: beschreiben des Scriptaufruf
+Skriptaufruf:<br>
+Skript 1 :<br>
+  
+Skript 2:<br>
+Aufruf: git_extract_commits -b </path vom Baseverzeichnis> -o <Name vom Output File>
 
-TODO: beschreiben der erzeugt files (falls solche erzeugt werden)
+Skript 1:<br>
 
-TODO: Lokation von logfiles und bekannte Fehlermeldungen beschreiben.
+Skript 2:<br>
+Temp Files werden unter /tmp erstellt und am Ende der Skript wieder gelöscht<br>
 
